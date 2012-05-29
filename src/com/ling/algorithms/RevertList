@@ -1,0 +1,23 @@
+//Most files from internet doesn't have a comment,add a simple list revet method there
+
+
+Node* revert(Node* head)
+{
+	//create a new list here
+	Node* newList = null;
+	
+	//check if the current list has a item
+	while( head->next != null ) 
+	{
+		//take out one 
+		Node * p = head;
+		head = head -> next;
+		
+		//insert it to the new list;
+		p->next = newList;
+		newList = p;
+	}
+	
+	//point the head to the new list, and return	
+	return head = newList;
+}	
