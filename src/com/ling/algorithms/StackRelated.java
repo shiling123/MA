@@ -48,5 +48,23 @@ public class StackRelated {
 			return mins.peek();			
 		}
 	}
+	
+	public static class TwoStackQueue<E> {
+		private Stack<E> a = new Stack<E>();
+		private Stack<E> b = new Stack<E>();
+		
+		public void inQueue(E e) {
+			a.push(e);
+		}
+		
+		public E outQueue() {
+			if(b.size()==0) {
+				while(!a.isEmpty()) {
+					b.push(a.pop());
+				}
+			}
+			return b.pop();
+		}
+	}
 
 }
