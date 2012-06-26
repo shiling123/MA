@@ -3,13 +3,33 @@ package com.ling.algorithms;
 import java.math.BigDecimal;
 
 public class NumbersRelated {
+	static String[] c = {  
+			"",      //0  
+		     "",      //1  
+		     "ABC",   //2  
+		     "DEF",   //3  
+		     "GHI",   //4  
+		     "JKL",   //5  
+		     "MNO",   //6  
+		     "PQRS",  //7  
+		     "TUV",   //8  
+		     "WXYZ",  //9  
+		};  
+		  
+		//如果number[0] = 4, answer[0] = 2   
+		//c[number[0]][answer[0]] = c[4][2] = 'I';  
+		int total[] = {0,0,3,3,3,3,3,4,3,4};  
+	
+	
 	public static void main(String[] args) {
-//		int[] a = {1,4,5,2,3,2,4};
+		int[] a = {-1,-2,-2,-1,-4};
 //		System.out.println(longestIncrease(a));
 //		System.out.println(getCatalan(2));
 //		System.out.println(getCatalan(3));
 //		System.out.println(getCatalan(60));
-		findNumbers(15);
+//		findNumbers(15);
+		
+		System.out.println(getLargestSubSum(a));
 	}
 	
 	public static int longestIncrease(int[]arr) {
@@ -43,12 +63,19 @@ public class NumbersRelated {
 	}
 	
 	
-	public void telphone(String nums) {
-		int n = nums.length();
+	public void telphone(int[] nums) {
+		int n = nums.length;
+		int[] result = new int[n];
 		
-		while(n>0) {
-			
+		while(true) {			
+			for(int i = 0; i < n; i ++) {
+				System.out.print(""+c[nums[i]].charAt(result[i]));
+			}
+			System.out.println();
+			int index = n-1;
+
 		}
+
 	}
 	
 	//输入一个正数n，输出所有和为n连续正数序列。
@@ -78,6 +105,22 @@ public class NumbersRelated {
 			System.out.print(i+",");
 		}	
 		System.out.println(big);
-
+	}
+	
+	//最大字数组和
+	public static int getLargestSubSum(int[] arr) {
+		int sum = 0;
+		int large = Integer.MIN_VALUE;
+		
+		for(int i=0; i < arr.length; i ++ ) {
+			sum += arr[i];
+			if(sum > large) {				
+				large = sum;
+			}
+			if(sum<0) {
+				sum = 0;
+			}
+		}
+		return large ;
 	}
 }
