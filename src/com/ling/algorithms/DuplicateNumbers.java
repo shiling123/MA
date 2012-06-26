@@ -1,5 +1,7 @@
 package com.ling.algorithms;
 
+import java.util.Collections;
+
 public class DuplicateNumbers {
 
 	/**
@@ -57,7 +59,4 @@ public class DuplicateNumbers {
 			}
 		}
 	}
-
-
-
 }
