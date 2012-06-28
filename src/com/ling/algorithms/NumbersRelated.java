@@ -29,7 +29,8 @@ public class NumbersRelated {
 //		System.out.println(getCatalan(60));
 //		findNumbers(15);
 		
-		System.out.println(getLargestSubSum(a));
+//		System.out.println(getLargestSubSum(a));
+		System.out.println(count1(1000));
 	}
 	
 	public static int longestIncrease(int[]arr) {
@@ -122,5 +123,32 @@ public class NumbersRelated {
 			}
 		}
 		return large ;
+	}
+	
+	public static int count1(int n) {
+		int[] prefix = new int[10];
+		int[] suffix = new int[10];
+		int[] digit = new int[10];
+		int base = 1;
+		for(int i = 0; base <= n ; base *=10,i++) {
+			suffix[i] = n%base;
+			digit[i] = (n % (base*10) - suffix[i])/base;
+			prefix[i] = n/(base*10);
+		}
+		
+		int count = 0;
+		base = 1;
+		
+		for(int i = 0; base<=n ; base *=10,i++) {
+			int val = digit[i];
+			if(val<1) {
+				count += prefix[i];
+			}else if(val ==1) {
+				count += prefix[i]+ 1 + suffix[i];
+			} else {
+				count += prefix[i]+base ;
+			}				
+		}		
+		return count;
 	}
 }
