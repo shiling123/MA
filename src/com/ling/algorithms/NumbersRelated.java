@@ -3,26 +3,8 @@ package com.ling.algorithms;
 import java.math.BigDecimal;
 
 public class NumbersRelated {
-	static String[] c = {  
-			"",      //0  
-		     "",      //1  
-		     "ABC",   //2  
-		     "DEF",   //3  
-		     "GHI",   //4  
-		     "JKL",   //5  
-		     "MNO",   //6  
-		     "PQRS",  //7  
-		     "TUV",   //8  
-		     "WXYZ",  //9  
-		};  
-		  
-		//如果number[0] = 4, answer[0] = 2   
-		//c[number[0]][answer[0]] = c[4][2] = 'I';  
-		int total[] = {0,0,3,3,3,3,3,4,3,4};  
-	
-	
 	public static void main(String[] args) {
-		int[] a = {-1,-2,-2,-1,-4};
+		int[] a = {2,3};
 //		System.out.println(longestIncrease(a));
 //		System.out.println(getCatalan(2));
 //		System.out.println(getCatalan(3));
@@ -30,7 +12,8 @@ public class NumbersRelated {
 //		findNumbers(15);
 		
 //		System.out.println(getLargestSubSum(a));
-		System.out.println(count1(1000));
+//		System.out.println(count1(1000));
+		telphone(a);
 	}
 	
 	public static int longestIncrease(int[]arr) {
@@ -64,7 +47,24 @@ public class NumbersRelated {
 	}
 	
 	
-	public void telphone(int[] nums) {
+	public static void telphone(int[] nums) {
+		String[] c = {  
+			" ",      //0  
+		     " ",      //1  
+		     "ABC",   //2  
+		     "DEF",   //3  
+		     "GHI",   //4  
+		     "JKL",   //5  
+		     "MNO",   //6  
+		     "PQRS",  //7  
+		     "TUV",   //8  
+		     "WXYZ",  //9  
+		};  
+		  
+		//如果number[0] = 4, answer[0] = 2   
+		//c[number[0]][answer[0]] = c[4][2] = 'I';  
+		int total[] = {0,0,3,3,3,3,3,4,3,4};  
+		
 		int n = nums.length;
 		int[] result = new int[n];
 		
@@ -72,11 +72,22 @@ public class NumbersRelated {
 			for(int i = 0; i < n; i ++) {
 				System.out.print(""+c[nums[i]].charAt(result[i]));
 			}
-			System.out.println();
-			int index = n-1;
-
+			System.out.println();		
+			
+			int k = 0;
+			while(k<n) {
+				if(result[k]<total[nums[k]]-1) {
+					result[k] +=1;
+					break;
+				} else {					
+					result[k]=0;
+					k++;
+				}
+			}
+			if (k==n) {
+				break;
+			}
 		}
-
 	}
 	
 	//输入一个正数n，输出所有和为n连续正数序列。
@@ -132,7 +143,7 @@ public class NumbersRelated {
 		int base = 1;
 		for(int i = 0; base <= n ; base *=10,i++) {
 			suffix[i] = n%base;
-			digit[i] = (n % (base*10) - suffix[i])/base;
+			digit[i] = n % (base*10)/base;
 			prefix[i] = n/(base*10);
 		}
 		
